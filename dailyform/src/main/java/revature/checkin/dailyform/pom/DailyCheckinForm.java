@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DailyCheckinForm {
@@ -26,4 +27,15 @@ public class DailyCheckinForm {
 
     @FindBy(xpath = "//*[@id=\"question-list\"]/div[2]/div[2]/div/span/input")
     private WebElement inputEmail;
+
+    public void goToPage() {
+        driver.get(url);
+    }
+
+    public boolean verifyOnPage() {
+        wait.until(ExpectedConditions.visibilityOf(inputName));
+        String titleText = driver.getTitle();
+        System.out.println("titleText: " + titleText);
+        return ("Daily Check-in Form".equals(titleText));
+    }
 }
